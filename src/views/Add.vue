@@ -6,14 +6,16 @@
       </div>
     </div>
     <UserForm />
+    <BackToListBtn />
   </div>
 </template>
 
 <script>
 import UserForm from '@/components/User-form';
+import BackToListBtn from '@/components/Back-to-list-btn';
 
 export default {
   name: 'Add',
-  components: { UserForm }
+  components: { UserForm, BackToListBtn }
 };
 </script>

@@ -1,20 +1,22 @@
 <template>
-  <div class="add-view container">
+  <div class="view container">
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-md-left text-secondary">Edit trainee</h1>
       </div>
     </div>
     <UserForm :userData="userData" />
+    <BackToListBtn />
   </div>
 </template>
 
 <script>
 import UserForm from '@/components/User-form';
+import BackToListBtn from '@/components/Back-to-list-btn';
 
 export default {
   name: 'User',
-  components: { UserForm },
+  components: { UserForm, BackToListBtn },
   data() {
     return {
       userData: {
