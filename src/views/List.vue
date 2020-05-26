@@ -1,13 +1,21 @@
 <template>
-  <div class="list-view">
-    <h1>Trainees list</h1>
+  <div class="view container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-md-left text-secondary">Trainees list</h1>
+      </div>
+    </div>
+    <div class="row">
+      <UsersList />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import UsersList from '@/components/Users-list';
 
 export default {
-  name: 'List'
+  name: 'List',
+  components: { UsersList }
 };
 </script>
