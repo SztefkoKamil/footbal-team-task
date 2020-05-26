@@ -5,7 +5,9 @@
       <router-link to="/add">Add</router-link> |
       <router-link to="/edit">Edit</router-link>
     </div>
-    <router-view />
+    <transition name="view-switch" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -28,6 +30,34 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+.view-switch-enter-active {
+  animation: show-view 0.1s 1 ease-in-out;
+}
+@keyframes show-view {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.view-switch-leave-active {
+  animation: hide-view 0.1s 1 ease-in-out;
+}
+@keyframes hide-view {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
   }
 }
 </style>
