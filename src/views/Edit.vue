@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { getters } from '../store/store';
 import UserForm from '@/components/User-form';
 import BackToListBtn from '@/components/Back-to-list-btn';
 
@@ -20,14 +21,24 @@ export default {
   data() {
     return {
       userData: {
-        id: 2,
-        email: 'janet.weaver@reqres.in',
-        first_name: 'Janet',
-        last_name: 'Weaver',
-        avatar:
-          'https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg'
+        first_name: '',
+        last_name: '',
+        avatar: ''
       }
     };
+  },
+  computed: {
+    ...getters
+  },
+  created() {
+    this.setUserData();
+  },
+  methods: {
+    setUserData() {
+      const { id } = this.$route.query;
+      const user = this.usersList.data.find(i => i.id === id);
+      this.userData = user;
+    }
   }
 };
 </script>
