@@ -11,6 +11,19 @@
   </div>
 </template>
 
+<script>
+import { actions } from './store/store';
+
+export default {
+  methods: {
+    ...actions
+  },
+  created() {
+    this.fetchUsersList();
+  }
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: Arial, sans-serif;
