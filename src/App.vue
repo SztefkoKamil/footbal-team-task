@@ -8,18 +8,60 @@
     <transition name="view-switch" mode="out-in">
       <router-view />
     </transition>
+    <div v-if="modalOpen" class="modal">
+      <component
+        :infoType="infoType"
+        :error="error"
+        :is="modalContent"
+      ></component>
+    </div>
   </div>
 </template>
 
 <script>
 import { actions } from './store/store';
+import Loading from './components/Loading';
+import Notification from './components/Notification';
+import eventBus from './eventBus';
 
 export default {
+  components: { Loading, Notification },
+  data() {
+    return {
+      modalOpen: true,
+      modalContent: Loading,
+      infoType: '',
+      error: null
+    };
+  },
   methods: {
-    ...actions
+    ...actions,
+    checkInfoType(infoType, error) {
+      if (infoType === 'error') {
+        this.infoType = infoType;
+        this.error = error;
+        this.modalContent = Notification;
+      } else if (infoType === 'userAdded' || infoType === 'userEdited') {
+        this.infoType = infoType;
+        this.modalContent = Notification;
+      } else {
+        this.modalContent = Loading;
+      }
+      this.modalOpen = true;
+    }
   },
   created() {
     this.fetchUsersList();
+    // emiters: store.js
+    eventBus.$on('hideModal', back => {
+      this.modalOpen = false;
+      this.modalContent = Loading;
+      if (back === 'back') this.$router.push({ path: '/' });
+    });
+    // emiters: store.js
+    eventBus.$on('showModal', (infoType, error) =>
+      this.checkInfoType(infoType, error)
+    );
   }
 };
 </script>
@@ -31,6 +73,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsla(0, 0%, 30%, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 #nav {
