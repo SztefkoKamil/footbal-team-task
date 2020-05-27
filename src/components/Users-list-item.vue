@@ -36,8 +36,7 @@ export default {
   },
   methods: {
     goToEditView() {
-      // todo
-      // store.editUser(this.userData.id)
+      this.$router.push({ name: 'Edit', query: { id: this.userData.id } });
     }
   }
 };
