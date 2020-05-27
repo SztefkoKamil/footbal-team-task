@@ -1,3 +1,5 @@
-# footbal-team-task
+# football-team-task
 
-Recruit task from Football Team
+Recruit task from Football Team.
+
+Simple Trainees manager: list, add, edit & delete trainees.
