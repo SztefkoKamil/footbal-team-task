@@ -6,7 +6,7 @@
           <img
             class="m-4"
             width="128"
-            style="min-width:128px;"
+            style="min-height:128px;"
             :src="
               avatar ||
                 'https://theglutensummit.com/wp-content/uploads/2013/11/mystery-avatar2-200x200.png'
@@ -49,9 +49,20 @@
               />
             </div>
           </div>
-          <button type="submit" class="btn btn-success align-self-start mt-5">
-            {{ userData ? 'Update trainee' : 'Add trainee' }}
-          </button>
+          <div class="mt-5 d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">
+              {{ userData ? 'Update trainee' : 'Add trainee' }}
+            </button>
+
+            <button
+              type="button"
+              v-if="userData"
+              class="btn btn-danger"
+              @click="userDelete"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -73,9 +84,12 @@ export default {
   },
   created() {
     this.checkFormType();
+    // emitters: App.vue
     eventBus.$on('showModal', infoType => {
       if (infoType === 'userAdded') this.clearForm();
     });
+    // emitters: Notification.vue
+    eventBus.$on('deleteAccepted', () => this.deleteUser(this.userData.id));
   },
   methods: {
     ...actions,
@@ -102,6 +116,9 @@ export default {
       this.firstname = '';
       this.lastname = '';
       this.avatar = '';
+    },
+    userDelete() {
+      eventBus.$emit('showModal', this.userData); // listeners: App.vue
     }
   }
 };

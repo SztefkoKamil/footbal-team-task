@@ -11,7 +11,7 @@
     <div v-if="modalOpen" class="modal">
       <component
         :infoType="infoType"
-        :error="error"
+        :data="infoData"
         :is="modalContent"
       ></component>
     </div>
@@ -31,18 +31,27 @@ export default {
       modalOpen: true,
       modalContent: Loading,
       infoType: '',
-      error: null
+      infoData: null
     };
   },
   methods: {
     ...actions,
-    checkInfoType(infoType, error) {
-      if (infoType === 'error') {
+    checkInfoType(infoType = {}) {
+      this.modalOpen = false;
+      if (
+        infoType === 'userAdded' ||
+        infoType === 'userEdited' ||
+        infoType === 'userDeleted'
+      ) {
         this.infoType = infoType;
-        this.error = error;
         this.modalContent = Notification;
-      } else if (infoType === 'userAdded' || infoType === 'userEdited') {
-        this.infoType = infoType;
+      } else if (infoType.id) {
+        this.infoType = 'delete';
+        this.infoData = infoType;
+        this.modalContent = Notification;
+      } else if (infoType.message) {
+        this.infoType = 'error';
+        this.infoData = infoType;
         this.modalContent = Notification;
       } else {
         this.modalContent = Loading;
@@ -59,9 +68,7 @@ export default {
       if (back === 'back') this.$router.push({ path: '/' });
     });
     // emiters: store.js
-    eventBus.$on('showModal', (infoType, error) =>
-      this.checkInfoType(infoType, error)
-    );
+    eventBus.$on('showModal', infoType => this.checkInfoType(infoType));
   }
 };
 </script>

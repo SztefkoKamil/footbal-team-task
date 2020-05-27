@@ -40,7 +40,6 @@ const actions = {
     Vue.axios
       .post('/users', body)
       .then(res => {
-        console.log(res.status);
         if (res.status === 201) {
           eventBus.$emit('showModal', 'userAdded'); // listeners: App.vue
         } else throw new Error('Adding trainee failed!');
@@ -57,10 +56,19 @@ const actions = {
     Vue.axios
       .put(`/users/${id}`, body)
       .then(res => {
-        console.log(res.status);
-        if (res.status === 20) {
+        if (res.status === 200) {
           eventBus.$emit('showModal', 'userEdited'); // listeners: App.vue
         } else throw new Error('Updating trainee failed!');
+      })
+      .catch(err => console.log(err));
+  },
+  deleteUser(id) {
+    Vue.axios
+      .delete(`/users/${id}`)
+      .then(res => {
+        if (res.status === 204) {
+          eventBus.$emit('showModal', 'userDeleted'); // listeners: App.vue
+        } else throw new Error('Deleting trainees failed!');
       })
       .catch(err => console.log(err));
   }
