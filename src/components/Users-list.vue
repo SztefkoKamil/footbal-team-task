@@ -15,7 +15,7 @@
         <nav aria-label="Trainees list pages navigation">
           <ul class="pagination my-3">
             <li v-if="usersList.page > 1" class="page-item">
-              <button class="btn btn-outline-success">
+              <button class="btn btn-outline-success" @click="prevPage()">
                 <span aria-hidden="true">&laquo;</span>
               </button>
             </li>
@@ -30,12 +30,13 @@
                   'btn-success': page === usersList.page,
                   'btn-outline-success': page !== usersList.page
                 }"
+                @click="goToPage(page)"
               >
                 {{ page }}
               </button>
             </li>
             <li v-if="usersList.page < usersList.total_pages" class="page-item">
-              <button class="btn btn-outline-success">
+              <button class="btn btn-outline-success" @click="nextPage()">
                 <span aria-hidden="true">&raquo;</span>
               </button>
             </li>
@@ -49,68 +50,24 @@
 
 <script>
 import UsersListItem from '@/components/Users-list-item';
+import { getters, actions } from '@/store/store';
 
 export default {
   components: { UsersListItem },
-  data() {
-    return {
-      usersList: {
-        page: 1,
-        per_page: 6,
-        total: 12,
-        total_pages: 2,
-        data: [
-          {
-            id: 7,
-            email: 'michael.lawson@reqres.in',
-            first_name: 'Michael',
-            last_name: 'Lawson',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg'
-          },
-          {
-            id: 8,
-            email: 'lindsay.ferguson@reqres.in',
-            first_name: 'Lindsay',
-            last_name: 'Ferguson',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/araa3185/128.jpg'
-          },
-          {
-            id: 9,
-            email: 'tobias.funke@reqres.in',
-            first_name: 'Tobias',
-            last_name: 'Funke',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg'
-          },
-          {
-            id: 10,
-            email: 'byron.fields@reqres.in',
-            first_name: 'Byron',
-            last_name: 'Fields',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg'
-          },
-          {
-            id: 11,
-            email: 'george.edwards@reqres.in',
-            first_name: 'George',
-            last_name: 'Edwards',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg'
-          },
-          {
-            id: 12,
-            email: 'rachel.howell@reqres.in',
-            first_name: 'Rachel',
-            last_name: 'Howell',
-            avatar:
-              'https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg'
-          }
-        ]
-      }
-    };
+  computed: {
+    ...getters
+  },
+  methods: {
+    ...actions,
+    prevPage() {
+      this.fetchUsersList(this.usersList.page - 1);
+    },
+    nextPage() {
+      this.fetchUsersList(this.usersList.page + 1);
+    },
+    goToPage(newPage) {
+      if (newPage !== this.usersList.page) this.fetchUsersList(newPage);
+    }
   }
 };
 </script>
