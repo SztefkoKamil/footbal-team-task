@@ -3,11 +3,17 @@
     class="list-group-item border-0 d-flex py-3"
     :class="{ 'bg-light': index % 2 }"
   >
-    <img class="rounded-circle" width="32" :src="userData.avatar" alt="" />
+    <img
+      class="rounded-circle"
+      width="32"
+      height="32"
+      :src="userData.avatar"
+      alt=""
+    />
     <p class="flex-grow-1 d-flex align-items-center my-0 mx-3 mx-md-5">
       {{ userData.first_name }} {{ userData.last_name }}
     </p>
-    <button class="btn" @click="goToEditView">
+    <button class="btn" @click="goToEditView" title="Edit trainee">
       <svg
         class="bi bi-pencil-square"
         width="1em"

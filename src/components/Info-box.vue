@@ -4,8 +4,7 @@
       type="button"
       class="btn text-secondary"
       @click="isOpen = !isOpen"
-      @mouseenter="isOpen = true"
-      @mouseleave="isOpen = false"
+      @blur="isOpen = false"
     >
       <svg
         class="bi bi-info-circle"

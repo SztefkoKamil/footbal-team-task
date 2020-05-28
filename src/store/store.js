@@ -75,7 +75,7 @@ const actions = {
       .then(res => {
         if (res.status === 204) {
           eventBus.$emit('showModal', 'userDeleted'); // listeners: App.vue
-        } else throw new Error('Deleting trainees failed!');
+        } else throw new Error('Deleting trainee failed!');
       })
       .catch(err => {
         eventBus.$emit('showModal', err); // listeners: App.vue

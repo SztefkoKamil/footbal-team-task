@@ -6,6 +6,7 @@
           class="bi bi-arrow-left"
           width="1.5rem"
           height="1.5rem"
+          style="max-width:1.5rem; max-height:1.5rem;"
           viewBox="0 0 16 16"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
