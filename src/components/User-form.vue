@@ -38,6 +38,7 @@
                 type="text"
                 id="firstname"
                 v-model="firstname"
+                required
               />
             </div>
             <div class="col-12 col-lg-6 d-flex flex-column mt-3 mt-lg-0">
@@ -47,6 +48,7 @@
                 type="text"
                 id="lastname"
                 v-model="lastname"
+                required
               />
             </div>
           </div>
