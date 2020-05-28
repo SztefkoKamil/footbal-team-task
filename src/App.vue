@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'modal-opened': modalOpen }">
     <div id="nav">
       <router-link to="/">List</router-link> |
       <router-link to="/add">Add</router-link> |
@@ -80,6 +80,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  &.modal-opened {
+    height: 100vw;
+    overflow: hidden;
+  }
 
   .modal {
     position: fixed;
