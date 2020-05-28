@@ -63,6 +63,9 @@ export default {
     });
     // emitters: store.js
     eventBus.$on('showModal', infoType => this.checkInfoType(infoType));
+  },
+  beforeMount() {
+    document.querySelector('#app-loading').remove();
   }
 };
 </script>
@@ -82,15 +85,7 @@ export default {
   }
 
   .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: hsla(0, 0%, 30%, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // styles in index.html -> head -> style
   }
 }
 
