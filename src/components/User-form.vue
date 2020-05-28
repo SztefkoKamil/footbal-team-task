@@ -32,7 +32,7 @@
         <div class="card-body d-flex flex-column justify-content-between">
           <div class="form-group row">
             <div class="col-12 col-lg-6 d-flex flex-column">
-              <label class="text-left" for="firstname">Firstname</label>
+              <label class="text-left" for="firstname">First name</label>
               <input
                 class="form-control"
                 type="text"
@@ -42,7 +42,7 @@
               />
             </div>
             <div class="col-12 col-lg-6 d-flex flex-column mt-3 mt-lg-0">
-              <label class="text-left" for="lastname">Lastname</label>
+              <label class="text-left" for="lastname">Last name</label>
               <input
                 class="form-control"
                 type="text"
