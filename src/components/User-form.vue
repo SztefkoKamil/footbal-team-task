@@ -3,8 +3,9 @@
     <div class="col-12 col-md-4 my-3 order-md-2">
       <div class="card h-100 py-4 shadow-sm border-0">
         <div class="card-body">
+          <InfoBox />
           <img
-            class="m-4"
+            class="m-4 rounded-circle"
             width="128"
             style="min-height:128px;"
             :src="
@@ -72,8 +73,10 @@
 <script>
 import { actions } from '../store/store';
 import eventBus from '../eventBus';
+import InfoBox from './Info-box';
 
 export default {
+  components: { InfoBox },
   props: { userData: { type: Object, default: () => null } },
   data() {
     return {
