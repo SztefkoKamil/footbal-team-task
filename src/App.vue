@@ -61,13 +61,12 @@ export default {
   },
   created() {
     this.fetchUsersList();
-    // emiters: store.js
-    eventBus.$on('hideModal', back => {
+    // emitters: store.js, Notification.vue
+    eventBus.$on('hideModal', () => {
       this.modalOpen = false;
       this.modalContent = Loading;
-      if (back === 'back') this.$router.push({ path: '/' });
     });
-    // emiters: store.js
+    // emitters: store.js
     eventBus.$on('showModal', infoType => this.checkInfoType(infoType));
   }
 };

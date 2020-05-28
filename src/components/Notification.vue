@@ -70,7 +70,8 @@ export default {
       eventBus.$emit('hideModal'); // listeners: App.vue
     },
     backToList() {
-      eventBus.$emit('hideModal', 'back'); // listeners: App.vue
+      eventBus.$emit('hideModal'); // listeners: App.vue
+      this.$router.push({ name: 'List' });
     },
     confirmDelete() {
       eventBus.$emit('deleteAccepted'); // listeners: User-form.vue
