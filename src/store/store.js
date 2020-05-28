@@ -7,7 +7,7 @@ Vue.use(VueAxios, axios);
 Vue.axios.defaults.baseURL = 'https://reqres.in/api';
 
 const state = Vue.observable({
-  usersList: {}
+  usersList: { data: [] }
 });
 
 const getters = {
@@ -28,7 +28,9 @@ const actions = {
           mutations.setUsersList(res.data);
         } else throw new Error('Fetching trainees failed!');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        eventBus.$emit('showModal', err); // listeners: App.vue
+      });
   },
   addUser(newUser) {
     eventBus.$emit('showModal'); // listeners: App.vue
@@ -44,7 +46,9 @@ const actions = {
           eventBus.$emit('showModal', 'userAdded'); // listeners: App.vue
         } else throw new Error('Adding trainee failed!');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        eventBus.$emit('showModal', err); // listeners: App.vue
+      });
   },
   editUser(newData, id) {
     eventBus.$emit('showModal'); // listeners: App.vue
@@ -60,7 +64,9 @@ const actions = {
           eventBus.$emit('showModal', 'userEdited'); // listeners: App.vue
         } else throw new Error('Updating trainee failed!');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        eventBus.$emit('showModal', err); // listeners: App.vue
+      });
   },
   deleteUser(id) {
     Vue.axios
@@ -70,7 +76,9 @@ const actions = {
           eventBus.$emit('showModal', 'userDeleted'); // listeners: App.vue
         } else throw new Error('Deleting trainees failed!');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        eventBus.$emit('showModal', err); // listeners: App.vue
+      });
   }
 };
 

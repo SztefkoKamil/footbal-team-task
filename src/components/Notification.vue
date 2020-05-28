@@ -38,7 +38,7 @@ import eventBus from '../eventBus';
 export default {
   props: {
     infoType: { type: String },
-    data: { type: Object, default: () => null }
+    data: { default: () => null }
   },
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
       } else if (this.infoType === 'userDeleted') {
         this.describtion = 'Trainee deleted succesfully!';
       } else if (this.infoType === 'error') {
-        this.describtion = this.data.message;
+        this.describtion = `${this.data.message}\nSorry, some error occur, please try again in 5 minutes.`;
       } else if (this.infoType === 'delete') {
         this.describtion = `Are you sure to delete trainee ${this.data.first_name} ${this.data.last_name}?`;
       }
