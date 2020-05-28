@@ -5,27 +5,29 @@
     </div>
     <div class="card-footer p-4">
       <button
-        v-if="infoType === 'userAdded' || infoType === 'userEdited'"
-        class="btn btn-secondary mr-4"
+        v-if="infoType !== 'delete'"
+        class="btn btn-secondary"
         @click="backToList"
+        ref="cancel"
       >
         Back to users list
       </button>
-      <button
-        v-else-if="infoType === 'delete'"
-        class="btn btn-secondary mr-4"
-        @click="hideModal"
-      >
+      <button v-else class="btn btn-secondary" @click="hideModal" ref="cancel">
         Cancel
       </button>
+
       <button
         v-if="infoType === 'delete'"
-        class="btn btn-danger"
+        class="btn btn-danger ml-4"
         @click="confirmDelete"
       >
         Delete
       </button>
-      <button v-else class="btn btn-success" @click="hideModal">
+      <button
+        v-else-if="infoType !== 'userDeleted'"
+        class="btn btn-success ml-4"
+        @click="hideModal"
+      >
         Continue
       </button>
     </div>
@@ -47,6 +49,9 @@ export default {
   },
   created() {
     this.checkInfoType();
+  },
+  mounted() {
+    this.$refs.cancel.focus();
   },
   beforeUpdate() {
     this.checkInfoType();
