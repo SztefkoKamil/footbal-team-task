@@ -94,7 +94,7 @@ export default {
       if (infoType === 'userAdded') this.clearForm();
     });
     // emitters: Notification.vue
-    eventBus.$on('deleteAccepted', () => this.deleteUser(this.userData.id));
+    eventBus.$on('deleteAccepted', id => this.deleteUser(id));
   },
   methods: {
     ...actions,

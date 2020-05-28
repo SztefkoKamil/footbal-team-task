@@ -74,7 +74,7 @@ export default {
       this.$router.push({ name: 'List' });
     },
     confirmDelete() {
-      eventBus.$emit('deleteAccepted'); // listeners: User-form.vue
+      eventBus.$emit('deleteAccepted', this.infoType.id); // listeners: User-form.vue
     }
   }
 };
