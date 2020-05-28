@@ -28,4 +28,12 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, form, next) => {
+  if (to.name === 'List') document.title = 'Trainees List - Trainees Manager';
+  else if (to.name === 'Add') document.title = 'Add Trainee - Trainees Manager';
+  else if (to.name === 'Edit')
+    document.title = 'Edit Trainee - Trainees Manager';
+  next();
+});
+
 export default router;
