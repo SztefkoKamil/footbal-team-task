@@ -69,6 +69,7 @@ const actions = {
       });
   },
   deleteUser(id) {
+    eventBus.$emit('showModal'); // listeners: App.vue
     Vue.axios
       .delete(`/users/${id}`)
       .then(res => {
