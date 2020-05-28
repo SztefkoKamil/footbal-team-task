@@ -1,10 +1,5 @@
 <template>
   <div id="app" :class="{ 'modal-opened': modalOpen }">
-    <div id="nav">
-      <router-link to="/">List</router-link> |
-      <router-link to="/add">Add</router-link> |
-      <router-link to="/edit">Edit</router-link>
-    </div>
     <transition name="view-switch" mode="out-in">
       <router-view />
     </transition>
@@ -79,9 +74,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding: 50px 0;
 
   &.modal-opened {
-    height: 100vw;
+    height: 100vh;
     overflow: hidden;
   }
 
@@ -95,19 +91,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 
