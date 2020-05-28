@@ -1,9 +1,7 @@
 <template>
   <div class="view container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="text-center text-md-left text-secondary">Edit trainee</h1>
-      </div>
+      <ViewTitle>Edit trainee</ViewTitle>
     </div>
     <UserForm :userData="userData" />
     <BackToListBtn />
@@ -12,12 +10,13 @@
 
 <script>
 import { getters } from '../store/store';
+import ViewTitle from '@/components/View-title';
 import UserForm from '@/components/User-form';
 import BackToListBtn from '@/components/Back-to-list-btn';
 
 export default {
   name: 'User',
-  components: { UserForm, BackToListBtn },
+  components: { ViewTitle, UserForm, BackToListBtn },
   data() {
     return {
       userData: {

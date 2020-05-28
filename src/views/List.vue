@@ -1,9 +1,7 @@
 <template>
   <div class="view container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="text-center text-md-left text-secondary">Trainees list</h1>
-      </div>
+      <ViewTitle>Trainees List</ViewTitle>
     </div>
     <div class="row">
       <UsersList />
@@ -12,10 +10,11 @@
 </template>
 
 <script>
+import ViewTitle from '@/components/View-title';
 import UsersList from '@/components/Users-list';
 
 export default {
   name: 'List',
-  components: { UsersList }
+  components: { ViewTitle, UsersList }
 };
 </script>
